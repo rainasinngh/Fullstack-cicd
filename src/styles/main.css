@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Base Styles */
+@layer base {
+    body {
+        @apply font-poppins antialiased text-dark;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-poppins;
+    }
+}
+
+/* Custom Components */
+@layer components {
+    .btn-primary {
+        @apply px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed ripple;
+    }
+
+    .btn-secondary {
+        @apply px-6 py-2 bg-secondary/20 text-secondary rounded-lg hover:bg-secondary/30 transition-colors flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed ripple;
+    }
+
+    .input-field {
+        @apply w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors placeholder-gray-400;
+    }
+
+    .card {
+        @apply bg-white rounded-xl p-6 shadow-soft hover:shadow-lg transition-shadow;
+    }
+
+    .shadow-soft {
+        @apply shadow-[0_2px_4px_rgba(0,0,0,0.05),_0_1px_2px_rgba(0,0,0,0.1)];
+    }
+}
+
+/* Ripple Effect */
+.ripple {
+    @apply relative overflow-hidden;
+}
+
+.ripple-effect {
+    @apply absolute block rounded-full scale-0 animate-ripple bg-white/30;
+}
+
+/* Custom Animations */
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Custom Utilities */
+@layer utilities {
+    .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .bg-gradient {
+        background: linear-gradient(135deg, theme('colors.primary'), theme('colors.secondary'));
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-primary/50 rounded-full hover:bg-primary/70 transition-colors;
+}
+
+/* Loading Animation */
+.loading {
+    @apply relative inline-flex;
+}
+
+.loading:after {
+    content: '';
+    @apply absolute w-4 h-4 rounded-full border-2 border-white border-t-transparent animate-spin;
+}
+
+/* Form Focus States */
+.focus-within\:border-primary:focus-within {
+    @apply border-primary;
+}
+
+.focus-within\:ring:focus-within {
+    @apply ring-2 ring-primary/20;
+}
+
+/* Transitions */
+.transition-transform {
+    @apply transition-all duration-300 ease-in-out;
+}
+
+.hover\:scale-105:hover {
+    @apply transform scale-105;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    @apply fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity duration-300;
+}
+
+.mobile-menu-content {
+    @apply fixed right-0 top-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300;
+}
+
+.mobile-menu.open .mobile-menu-content {
+    @apply translate-x-0;
+}
+
+.mobile-menu:not(.open) .mobile-menu-content {
+    @apply translate-x-full;
+}
+
+/* Toast Notifications */
+.toast {
+    @apply fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg transform transition-all duration-300;
+}
+
+.toast-success {
+    @apply bg-success text-white;
+}
+
+.toast-error {
+    @apply bg-error text-white;
+}
+
+.toast-info {
+    @apply bg-primary text-white;
+}
+
+/* Tooltip */
+.tooltip {
+    @apply relative inline-block;
+}
+
+.tooltip-content {
+    @apply absolute hidden px-2 py-1 bg-dark text-white text-sm rounded-md shadow-lg z-10 whitespace-nowrap;
+}
+
+.tooltip:hover .tooltip-content {
+    @apply block;
+}
+
+/* Progress Bar */
+.progress-bar {
+    @apply w-full h-2 bg-gray-200 rounded-full overflow-hidden;
+}
+
+.progress-bar-fill {
+    @apply h-full bg-primary transition-all duration-300 ease-out;
+}
+
+/* Badge */
+.badge {
+    @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.badge-primary {
+    @apply bg-primary/10 text-primary;
+}
+
+.badge-secondary {
+    @apply bg-secondary/10 text-secondary;
+}
+
+.badge-success {
+    @apply bg-success/10 text-success;
+}
+
+/* Avatar */
+.avatar {
+    @apply relative inline-block rounded-full overflow-hidden;
+}
+
+.avatar-sm {
+    @apply w-8 h-8;
+}
+
+.avatar-md {
+    @apply w-12 h-12;
+}
+
+.avatar-lg {
+    @apply w-16 h-16;
+}
+
+/* Custom Radio & Checkbox */
+.custom-radio {
+    @apply w-4 h-4 text-primary border-gray-300 focus:ring-primary;
+}
+
+.custom-checkbox {
+    @apply w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary;
+}
