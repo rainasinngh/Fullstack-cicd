@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 const AuthContext = createContext();
 
@@ -11,7 +12,6 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Check for stored user data on mount
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
             try {
@@ -24,41 +24,13 @@ export function AuthProvider({ children }) {
         setLoading(false);
     }, []);
 
-    // Mock authentication functions for demo purposes
     const login = async (email, password) => {
         try {
-            // Simulate API call delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            // Mock successful login
-            const mockUser = {
-                id: '1',
-                name: 'Demo User',
-                email: email,
-                role: 'user',
-                avatar: `https://ui-avatars.com/api/?name=Demo+User&background=6B9AC4&color=fff`,
-                preferences: {
-                    notifications: true,
-                    emailUpdates: true,
-                    reminderTime: '09:00'
-                },
-                stats: {
-                    moodScore: 85,
-                    stressLevel: 'Moderate',
-                    sleepQuality: 'Good',
-                    anxietyLevel: 'Low'
-                },
-                lastAssessment: new Date().toISOString(),
-                upcomingSession: {
-                    therapist: 'Dr. Sarah Johnson',
-                    date: new Date(Date.now() + 86400000).toISOString(), // Tomorrow
-                    type: 'Video Session'
-                }
-            };
-            
-            setUser(mockUser);
-            localStorage.setItem('user', JSON.stringify(mockUser));
-            return mockUser;
+            const response = await axios.post('http://localhost:8000/api/auth/login', { email, password });
+            const userData = response.data;
+            setUser(userData);
+            localStorage.setItem('user', JSON.stringify(userData));
+            return userData;
         } catch (error) {
             console.error('Login error:', error);
             throw new Error('Failed to login');
@@ -67,34 +39,11 @@ export function AuthProvider({ children }) {
 
     const register = async (email, password, name) => {
         try {
-            // Simulate API call delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            // Mock successful registration
-            const mockUser = {
-                id: '1',
-                name: name,
-                email: email,
-                role: 'user',
-                avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=6B9AC4&color=fff`,
-                preferences: {
-                    notifications: true,
-                    emailUpdates: true,
-                    reminderTime: '09:00'
-                },
-                stats: {
-                    moodScore: 75,
-                    stressLevel: 'Low',
-                    sleepQuality: 'Fair',
-                    anxietyLevel: 'Low'
-                },
-                lastAssessment: null,
-                upcomingSession: null
-            };
-            
-            setUser(mockUser);
-            localStorage.setItem('user', JSON.stringify(mockUser));
-            return mockUser;
+            const response = await axios.post('http://localhost:8000/api/auth/register', { email, password, name });
+            const userData = response.data;
+            setUser(userData);
+            localStorage.setItem('user', JSON.stringify(userData));
+            return userData;
         } catch (error) {
             console.error('Registration error:', error);
             throw new Error('Failed to register');
@@ -108,17 +57,8 @@ export function AuthProvider({ children }) {
 
     const updateProfile = async (data) => {
         try {
-            // Simulate API call delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            const updatedUser = {
-                ...user,
-                ...data,
-                avatar: data.name 
-                    ? `https://ui-avatars.com/api/?name=${encodeURIComponent(data.name)}&background=6B9AC4&color=fff`
-                    : user.avatar
-            };
-            
+            const response = await axios.put(`http://localhost:8000/api/users/${user.id}`, data);
+            const updatedUser = response.data;
             setUser(updatedUser);
             localStorage.setItem('user', JSON.stringify(updatedUser));
             return updatedUser;
@@ -130,18 +70,8 @@ export function AuthProvider({ children }) {
 
     const updateStats = async (stats) => {
         try {
-            // Simulate API call delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            const updatedUser = {
-                ...user,
-                stats: {
-                    ...user.stats,
-                    ...stats
-                },
-                lastAssessment: new Date().toISOString()
-            };
-            
+            const response = await axios.put(`http://localhost:8000/api/users/${user.id}/stats`, stats);
+            const updatedUser = response.data;
             setUser(updatedUser);
             localStorage.setItem('user', JSON.stringify(updatedUser));
             return updatedUser;
