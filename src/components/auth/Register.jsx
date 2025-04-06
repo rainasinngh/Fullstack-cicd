@@ -10,7 +10,8 @@ const Register = () => {
         email: '',
         password: '',
         confirmPassword: '',
-        agreeToTerms: false
+        agreeToTerms: false,
+        role: 'user' // default to user
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -35,7 +36,7 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         const passwordError = validatePassword();
         if (passwordError) {
             setError(passwordError);
@@ -50,7 +51,9 @@ const Register = () => {
         try {
             setError('');
             setLoading(true);
-            await register(formData.email, formData.password, formData.name);
+            // Pass role along with registration
+            await register(formData.email, formData.password, formData.name, formData.role);
+            console.log('Registered as:', formData.role);
             navigate('/dashboard');
         } catch (err) {
             setError('Failed to create an account. Please try again.');
@@ -70,9 +73,7 @@ const Register = () => {
                     <h2 className="text-2xl font-bold text-dark mb-2">
                         Create Your Account
                     </h2>
-                    <p className="text-gray-600">
-                        Begin your journey to mental wellness
-                    </p>
+                    <p className="text-gray-600">Begin your journey to mental wellness</p>
                 </div>
 
                 {/* Form */}
@@ -86,9 +87,7 @@ const Register = () => {
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
-                            <label htmlFor="name" className="block text-gray-700 mb-2">
-                                Full Name
-                            </label>
+                            <label htmlFor="name" className="block text-gray-700 mb-2">Full Name</label>
                             <input
                                 id="name"
                                 name="name"
@@ -102,9 +101,7 @@ const Register = () => {
                         </div>
 
                         <div>
-                            <label htmlFor="email" className="block text-gray-700 mb-2">
-                                Email Address
-                            </label>
+                            <label htmlFor="email" className="block text-gray-700 mb-2">Email Address</label>
                             <input
                                 id="email"
                                 name="email"
@@ -118,9 +115,7 @@ const Register = () => {
                         </div>
 
                         <div>
-                            <label htmlFor="password" className="block text-gray-700 mb-2">
-                                Password
-                            </label>
+                            <label htmlFor="password" className="block text-gray-700 mb-2">Password</label>
                             <input
                                 id="password"
                                 name="password"
@@ -131,15 +126,11 @@ const Register = () => {
                                 className="input-field"
                                 placeholder="Create a password"
                             />
-                            <p className="mt-1 text-sm text-gray-500">
-                                Must be at least 8 characters long
-                            </p>
+                            <p className="mt-1 text-sm text-gray-500">Must be at least 8 characters long</p>
                         </div>
 
                         <div>
-                            <label htmlFor="confirmPassword" className="block text-gray-700 mb-2">
-                                Confirm Password
-                            </label>
+                            <label htmlFor="confirmPassword" className="block text-gray-700 mb-2">Confirm Password</label>
                             <input
                                 id="confirmPassword"
                                 name="confirmPassword"
@@ -152,6 +143,36 @@ const Register = () => {
                             />
                         </div>
 
+                        {/* Role selection */}
+                        <div>
+                            <label className="block text-gray-700 mb-2">Registering as</label>
+                            <div className="flex gap-4">
+                                <label className="flex items-center">
+                                    <input
+                                        type="radio"
+                                        name="role"
+                                        value="user"
+                                        checked={formData.role === 'user'}
+                                        onChange={handleChange}
+                                        className="mr-2"
+                                    />
+                                    User
+                                </label>
+                                <label className="flex items-center">
+                                    <input
+                                        type="radio"
+                                        name="role"
+                                        value="therapist"
+                                        checked={formData.role === 'therapist'}
+                                        onChange={handleChange}
+                                        className="mr-2"
+                                    />
+                                    Therapist
+                                </label>
+                            </div>
+                        </div>
+
+                        {/* Terms checkbox */}
                         <div className="flex items-start">
                             <input
                                 id="agreeToTerms"
@@ -163,13 +184,9 @@ const Register = () => {
                             />
                             <label htmlFor="agreeToTerms" className="ml-2 text-sm text-gray-600">
                                 I agree to the{' '}
-                                <Link to="/terms" className="text-primary hover:text-primary/80">
-                                    Terms of Service
-                                </Link>
+                                <Link to="/terms" className="text-primary hover:text-primary/80">Terms of Service</Link>
                                 {' '}and{' '}
-                                <Link to="/privacy" className="text-primary hover:text-primary/80">
-                                    Privacy Policy
-                                </Link>
+                                <Link to="/privacy" className="text-primary hover:text-primary/80">Privacy Policy</Link>
                             </label>
                         </div>
 
@@ -191,30 +208,6 @@ const Register = () => {
                             )}
                         </button>
                     </form>
-
-                    <div className="mt-8">
-                        <div className="relative">
-                            <div className="absolute inset-0 flex items-center">
-                                <div className="w-full border-t border-gray-200"></div>
-                            </div>
-                            <div className="relative flex justify-center text-sm">
-                                <span className="px-4 bg-white text-gray-500">
-                                    Or sign up with
-                                </span>
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4 mt-6">
-                            <button className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                                <i className="fab fa-google text-red-500 mr-2"></i>
-                                Google
-                            </button>
-                            <button className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                                <i className="fab fa-facebook text-blue-600 mr-2"></i>
-                                Facebook
-                            </button>
-                        </div>
-                    </div>
                 </div>
 
                 {/* Footer */}

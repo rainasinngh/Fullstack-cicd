@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from './Navbar/Navbar';
 
 const LandingPage = () => {
     const features = [
@@ -49,33 +50,7 @@ const LandingPage = () => {
     return (
         <div className="min-h-screen">
             {/* Navigation */}
-            <nav className="bg-white shadow-sm">
-                <div className="container mx-auto px-6 py-4">
-                    <div className="flex items-center justify-between">
-                        <Link to="/" className="text-2xl font-bold text-primary">
-                            RAAHAT
-                        </Link>
-                        <div className="hidden md:flex items-center space-x-8">
-                            <Link to="/" className="text-dark hover:text-primary transition-colors">Home</Link>
-                            <Link to="/about" className="text-dark hover:text-primary transition-colors">About</Link>
-                            <Link to="/services" className="text-dark hover:text-primary transition-colors">Services</Link>
-                            <Link to="/contact" className="text-dark hover:text-primary transition-colors">Contact</Link>
-                        </div>
-                        <div className="flex items-center space-x-4">
-                            <Link to="/login" className="text-dark hover:text-primary transition-colors">
-                                <button className="px-6 py-2 text-primary bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors">
-                                    Login
-                                </button>
-                            </Link>
-                            <Link to="/register" className="text-white">
-                                <button className="px-6 py-2 bg-primary rounded-lg hover:bg-primary/90 transition-colors">
-                                    Sign Up
-                                </button>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            <Navbar />
 
             {/* Hero Section */}
             <section className="bg-neutral py-20">

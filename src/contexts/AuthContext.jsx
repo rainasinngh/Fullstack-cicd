@@ -37,9 +37,9 @@ export function AuthProvider({ children }) {
         }
     };
 
-    const register = async (email, password, name) => {
+    const register = async (email, password, name, role) => {
         try {
-            const response = await axios.post('http://localhost:8000/api/auth/register', { email, password, name });
+            const response = await axios.post('http://localhost:8000/api/auth/register', { email, password, name, role });
             const userData = response.data;
             setUser(userData);
             localStorage.setItem('user', JSON.stringify(userData));
@@ -70,7 +70,18 @@ export function AuthProvider({ children }) {
 
     const updateStats = async (stats) => {
         try {
-            const response = await axios.put(`http://localhost:8000/api/users/${user.id}/stats`, stats);
+            const token = localStorage.getItem('token');
+    
+            const response = await axios.put(
+                `http://localhost:8000/api/users/${user._id}/stats`,
+                stats,
+                {
+                    headers: {
+                        'auth-token': token
+                    }
+                }
+            );
+    
             const updatedUser = response.data;
             setUser(updatedUser);
             localStorage.setItem('user', JSON.stringify(updatedUser));
@@ -80,6 +91,7 @@ export function AuthProvider({ children }) {
             throw new Error('Failed to update stats');
         }
     };
+    
 
     const value = {
         user,

@@ -38,6 +38,7 @@ router.put('/:id/stats', fetchuser, async (req, res) => {
 
     try {
         const user = await User.findById(userId);
+        console.log('User found:', user);
 
         if (!user) return res.status(404).json({ message: 'User not found' });
 
