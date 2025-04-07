@@ -83,19 +83,19 @@ const Navbar = () => {
                             {dropdownOpen && (
                                 <div className="absolute top-full left-0 mt-0 bg-white border rounded-lg shadow-lg py-2 w-48 z-10">
                                     <Link
-                                        to="/helpline"
+                                        to="https://www.thelivelovelaughfoundation.org/find-help/helplines" target='__blank'
                                         className="block px-4 py-2 text-dark hover:bg-primary/10 hover:text-primary"
                                     >
                                         Helpline
                                     </Link>
                                     <Link
-                                        to="/professional"
+                                        to="https://www.thelivelovelaughfoundation.org/find-help/therapist" target='__blank'
                                         className="block px-4 py-2 text-dark hover:bg-primary/10 hover:text-primary"
                                     >
                                         Find a Professional
                                     </Link>
                                     <Link
-                                        to="/self-help"
+                                        to="https://www.thelivelovelaughfoundation.org/find-help/self-help-techniques" target='__blank'
                                         className="block px-4 py-2 text-dark hover:bg-primary/10 hover:text-primary"
                                     >
                                         Self-Help

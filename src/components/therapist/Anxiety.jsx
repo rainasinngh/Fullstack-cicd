@@ -2,77 +2,61 @@ import React from 'react';
 import Navbar from '../Navbar/Navbar';
 
 
-const StressPage = () => {
+const AnxietyPage = () => {
     return (
         <>
             <Navbar />
             <div className="max-w-4xl mx-auto px-6 py-10">
-                <h1 className="text-3xl font-bold text-primary mb-6">Understanding Stress</h1>
+                <h1 className="text-3xl font-bold text-primary mb-6">Understanding Anxiety</h1>
 
                 {/* Section: Awareness */}
                 <section className="mb-8">
-                    <h2 className="text-2xl font-semibold text-dark mb-2">Mental Health Awareness for Stress</h2>
+                    <h2 className="text-2xl font-semibold text-dark mb-2">Mental Health Awareness for Anxiety</h2>
                     <p className="text-gray-700 leading-relaxed">
-                        Stress is the body’s reaction to any change that it experiences, which requires an adjustment or response. The body reacts to these changes with physical, mental, and emotional responses. The word 'stress' is quite often used in a negative sense.
-
-                        But stress isn't always bad and it is a normal part of life. In fact, sometimes stress can be positive and can spur one to be productive, creative, prepared for challenges, and stay motivated and focused. But too much stress or prolonged stress can impact our physical and mental health. It can bring on – or worsen – certain symptoms or diseases. Common side effects of stress on the body range from aches and pains, sleep-related issues, nausea and dizziness to anxious or racing thoughts, moodiness, and even irritability and short temper.
-
-                        When does stress become a matter of concern? When it becomes overwhelming and starts affecting your health, your productivity, your relationships, and the overall quality of your life. There are physical, emotional and behavioral symptoms of stress. Being aware of these can help you understand what you are going through and deal with it accordingly.
+                    Anxiety is a feeling of fear, worry, or nervousness when one is about to do something challenging. Everybody experiences anxiety across different situations, and it is a normal experience. However, anxiety becomes a medical condition when it is prolonged and starts to impact the way one would normally perform ordinary tasks. It can start affecting your sleep, your ability to work, and your relationships.
                     </p>
                 </section>
 
                 {/* Section: Signs & Symptoms */}
                 <section className="mb-8">
-                    <h2 className="text-2xl font-semibold text-dark mb-2">Signs & Symptoms of Stress</h2>
-                    <h1 className="text-xl font-semibold text-dark mb-2 mt-4">Cognitive</h1>
+                    <h2 className="text-2xl font-semibold text-dark mb-2">Signs & Symptoms of Anxiety</h2>
+                    <h1 className="text-xl font-semibold text-dark mb-2 mt-4">You may be feeling</h1>
                     <ul className="list-disc pl-6 text-gray-700 space-y-1">
-                        <li>Memory problems</li>
-                        <li>Inability to concentrate</li>
-                        <li>Poor judgment</li>
-                        <li>Seeing only the negative</li>
-                        <li>Anxious or racing thoughts</li>
-                        <li>Constant worrying</li>
+                        <li>Excessive fear or worry</li>
+                        <li>A sense of impending danger</li>
+                        <li>Restlessness</li>
+                        <li>Nervous or tensed</li>
+                        <li>Agitated</li>
+                        <li>Intimidated with social interactions</li>
+                        <li>Detached from people</li>
                     </ul>
 
-                    <h1 className="text-xl font-semibold text-dark mt-3 mb-2">Emotional</h1>
+                    <h1 className="text-xl font-semibold text-dark mt-3 mb-2">You may be experiencing</h1>
                     <ul className="list-disc pl-6 text-gray-700 space-y-1">
-                        <li>Moodiness</li>
-                        <li>Irritability or short temper</li>
-                        <li>Agitation, inability to relax</li>
-                        <li>Feeling overwhelmed</li>
-                        <li>Sense of loneliness and isolation</li>
-                        <li>General unhappiness</li>
+                        <li>Sleep problems</li>
+                        <li>Shortness of breath/rapid breathing</li>
+                        <li>Heart palpitations</li>
+                        <li>Nausea/dizziness</li>
+                        <li>Sweating</li>
+                        <li>Headaches or stomach aches</li>
+                        <li>Problem with concentration</li>
                     </ul>
-                    <h1 className="text-xl font-semibold text-dark mt-3 mb-2">Physical</h1>
+                    <h1 className="text-xl font-semibold text-dark mt-3 mb-2">You may be thinking</h1>
                     <ul className="list-disc pl-6 text-gray-700 space-y-1">
-                        <li>Aches and pains</li>
-                        <li>Diarrhea or constipation</li>
-                        <li>Nausea, dizziness</li>
-                        <li>Chest pain, rapid heartbeat</li>
-                        <li>Loss of sex drive</li>
-                        <li>Frequent colds</li>
+                        <li>Everything’s going to go wrong</li>
+                        <li>I can’t control the way I feel</li>
+                        <li>I can’t focus on anything</li>
+                        <li>Everyone is looking at me</li>
+                        
                     </ul>
-                    <h1 className="text-xl font-semibold text-dark mt-3 mb-2">Behavioral</h1>
-                    <ul className="list-disc pl-6 text-gray-700 space-y-1">
-                        <li>Eating more or less</li>
-                        <li>Sleeping too much or too little</li>
-                        <li>Isolating yourself from others</li>
-                        <li>Chest pain, rapid heartbeat</li>
-                        <li>Neglecting responsibilitiese</li>
-                        <li>Using alcohol, cigarettes or drugs to relax</li>
-                        <li>Procrastinating or neglecting responsibilities</li>
-                        <li>Taking out frustrations on others</li>
-                        <li>Exercising less often</li>
-                        <li>Exhibiting more nervous behaviors, such as nail biting, fidgeting, and pacing</li>
-
-                    </ul>
+                    
                 </section>
 
                 {/* Section: Causes */}
                 <section className="mb-8">
-                    <h2 className="text-2xl font-semibold text-dark mb-2">What Causes Stress?</h2>
+                    <h2 className="text-2xl font-semibold text-dark mb-2">What Causes Anxiety?</h2>
                     <p className="text-gray-700 leading-relaxed">
-                        A person can feel stress anytime a situation is seen as threatening, challenging and difficult to cope with. An extremely busy lifestyle with multiple responsibilities, aspirations, competition, coupled with poor nutrition and sleep, lack of relaxation, inadequate exercise, increased use of smartphones, and being confined indoors can increase the risk of stress.
+                    Anxiety can stem from a complex interplay of factors, including genetic predisposition, environmental stressors, brain chemistry imbalances, and past experiences, with trauma and chronic stress being significant contributors to its development. It can also be triggered by specific situations, such as public speaking or social interactions, and can manifest in various forms, including generalized anxiety disorder (GAD), panic disorder, and social anxiety disorder.
                     </p>
                 </section>
 
@@ -137,4 +121,4 @@ const StressPage = () => {
     );
 };
 
-export default StressPage;
+export default AnxietyPage;
