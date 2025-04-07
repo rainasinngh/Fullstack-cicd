@@ -13,6 +13,9 @@ import AboutPage from './components/AboutPage';
 import ContactPage from './components/ContactPage';
 import Stress from './components/therapist/Stress';
 import Anxiety from './components/therapist/Anxiety';
+import Depression from './components/therapist/Depression';
+import StoriesOfHope from './components/therapist/StoriesOfHope';
+import ShareYourStory from './components/therapist/ShareYourStory';
 import ServicesPage from './components/ServicesPage';
 
 const App = () => {
@@ -26,6 +29,11 @@ const App = () => {
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/MHM/stress" element={<Stress />} />
                     <Route path="/MHM/anxiety" element={<Anxiety />} />
+                    <Route path="/MHM/depression" element={<Depression />} />
+
+                    <Route path="/impact/stories-of-hope" element={<StoriesOfHope />} />
+                    <Route path="/impact/share-your-story" element={<ShareYourStory />} />
+
 
                     <Route path="/services" element={<ServicesPage />} />
                     <Route path="/login" element={<Login />} />

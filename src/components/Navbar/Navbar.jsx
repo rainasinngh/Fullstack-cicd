@@ -58,13 +58,13 @@ const Navbar = () => {
                             {impactDropdownOpen && (
                                 <div className="absolute top-full left-0 mt-0 bg-white border rounded-lg shadow-lg py-2 w-56 z-10">
                                     <Link
-                                        to="/impact/stories"
+                                        to="/impact/stories-of-hope"
                                         className="block px-4 py-2 text-dark hover:bg-primary/10 hover:text-primary"
                                     >
                                         Stories of Hope
                                     </Link>
                                     <Link
-                                        to="/impact/share-stories"
+                                        to="/impact/share-your-story"
                                         className="block px-4 py-2 text-dark hover:bg-primary/10 hover:text-primary"
                                     >
                                         Share Your Story
