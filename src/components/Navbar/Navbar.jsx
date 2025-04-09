@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Navbar = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [mhmDropdownOpen, setMhmDropdownOpen] = useState(false);
     const [impactDropdownOpen, setImpactDropdownOpen] = useState(false);
 
-
+    const token = localStorage.getItem('token');
+    const { logout } = useAuth();
 
     return (
         <nav className="bg-white shadow-sm">
@@ -108,16 +110,34 @@ const Navbar = () => {
 
                     </div>
                     <div className="flex items-center space-x-4">
-                        <Link to="/login" className="text-dark hover:text-primary transition-colors">
-                            <button className="px-6 py-2 text-primary bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors">
-                                Login
-                            </button>
-                        </Link>
-                        <Link to="/register" className="text-white">
-                            <button className="px-6 py-2 bg-primary rounded-lg hover:bg-primary/90 transition-colors">
-                                Sign Up
-                            </button>
-                        </Link>
+                        {token ? (
+                            <>
+                                <Link to="/dashboard" className="text-dark hover:text-primary transition-colors">
+                                    <button className="px-6 py-2 text-primary bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors">
+                                        DashBoard
+                                    </button>
+                                </Link>
+                                <button
+                                    className="px-6 py-2 bg-primary rounded-lg hover:bg-primary/90 transition-colors text-white"
+                                    onClick={logout}
+                                >
+                                    Logout
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <Link to="/login" className="text-dark hover:text-primary transition-colors">
+                                    <button className="px-6 py-2 text-primary bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors">
+                                        Login
+                                    </button>
+                                </Link>
+                                <Link to="/register" className="text-white">
+                                    <button className="px-6 py-2 bg-primary rounded-lg hover:bg-primary/90 transition-colors">
+                                        Sign Up
+                                    </button>
+                                </Link>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

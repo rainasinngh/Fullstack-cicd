@@ -57,4 +57,16 @@ router.put('/:id/stats', fetchuser, async (req, res) => {
     }
 });
 
+// backend/routes/users.js
+router.get('/me', fetchuser, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        console.log('User found:', req.user.id, user);
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
 module.exports = router;

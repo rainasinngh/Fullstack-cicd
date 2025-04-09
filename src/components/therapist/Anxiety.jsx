@@ -56,7 +56,7 @@ const AnxietyPage = () => {
                 <section className="mb-8">
                     <h2 className="text-2xl font-semibold text-dark mb-2">What Causes Anxiety?</h2>
                     <p className="text-gray-700 leading-relaxed">
-                    Anxiety can stem from a complex interplay of factors, including genetic predisposition, environmental stressors, brain chemistry imbalances, and past experiences, with trauma and chronic stress being significant contributors to its development. It can also be triggered by specific situations, such as public speaking or social interactions, and can manifest in various forms, including generalized anxiety disorder (GAD), panic disorder, and social anxiety disorder.
+                    Anxiety can stem from a complex interplay of factors, including genetic predisposition, environmental stressors, brain chemistry imbalances, and past experiences, with trauma and chronic stress being significant contributors to its development. It can also be triggered by specific situations, such as public speaking or social interactions, and can manifest in various forms, including generalized anxiety disorder (GAD), panic disorder, and social anxiety disorder.nn
                     </p>
                 </section>
 

@@ -41,11 +41,11 @@ const Dashboard = () => {
                         <div className="flex items-center space-x-4">
                             <div className="relative">
                                 <button className="flex items-center space-x-2 text-dark hover:text-primary transition-colors">
-                                    <img
+                                    {/* <img
                                         src={user?.avatar}
                                         alt={user?.name}
                                         className="w-8 h-8 rounded-full"
-                                    />
+                                    /> */}
                                     <span>{user?.name}</span>
                                 </button>
                             </div>

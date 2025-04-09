@@ -78,9 +78,10 @@ const Assessment = () => {
     ];
 
     const handleAnswer = (value) => {
+        const currentId = questions[currentQuestion].id;
         setAnswers(prev => ({
             ...prev,
-            [questions[currentQuestion].id]: value
+            [currentId]: value
         }));
 
         if (currentQuestion < questions.length - 1) {
@@ -89,11 +90,15 @@ const Assessment = () => {
     };
 
     const calculateResults = () => {
-        // Mock AI analysis based on answers
-        const moodScore = answers[1] * 20; // Scale 1-5 converted to 0-100
-        const stressLevel = answers[2];
-        const sleepQuality = answers[3];
-        const anxietyLevel = answers[5] <= 2 ? "Low" : answers[5] >= 4 ? "High" : "Moderate";
+        const moodScore = (answers[1] || 0) * 20;
+        const stressLevel = answers[2] || "Unknown";
+        const sleepQuality = answers[3] || "Unknown";
+        const anxietyRaw = answers[5] || 0;
+
+        const anxietyLevel =
+            anxietyRaw <= 2 ? "Low" :
+                anxietyRaw >= 4 ? "High" :
+                    "Moderate";
 
         return {
             moodScore,
@@ -129,11 +134,10 @@ const Assessment = () => {
                                 <div key={option.value} className="text-center">
                                     <button
                                         onClick={() => handleAnswer(option.value)}
-                                        className={`w-12 h-12 rounded-full ${
-                                            answers[question.id] === option.value
+                                        className={`w-12 h-12 rounded-full ${answers[question.id] === option.value
                                                 ? 'bg-primary text-white'
                                                 : 'bg-gray-100 hover:bg-gray-200'
-                                        } transition-colors ripple`}
+                                            } transition-colors ripple`}
                                     >
                                         {option.value}
                                     </button>
@@ -151,11 +155,10 @@ const Assessment = () => {
                             <button
                                 key={option.value}
                                 onClick={() => handleAnswer(option.value)}
-                                className={`w-full p-4 rounded-lg text-left ${
-                                    answers[question.id] === option.value
+                                className={`w-full p-4 rounded-lg text-left ${answers[question.id] === option.value
                                         ? 'bg-primary text-white'
                                         : 'bg-gray-100 hover:bg-gray-200'
-                                } transition-colors ripple`}
+                                    } transition-colors ripple`}
                             >
                                 {option.label}
                             </button>
@@ -176,11 +179,10 @@ const Assessment = () => {
                                         : [...currentAnswers, option.value];
                                     handleAnswer(newAnswers);
                                 }}
-                                className={`w-full p-4 rounded-lg text-left ${
-                                    (answers[question.id] || []).includes(option.value)
+                                className={`w-full p-4 rounded-lg text-left ${(answers[question.id] || []).includes(option.value)
                                         ? 'bg-primary text-white'
                                         : 'bg-gray-100 hover:bg-gray-200'
-                                } transition-colors ripple`}
+                                    } transition-colors ripple`}
                             >
                                 {option.label}
                             </button>

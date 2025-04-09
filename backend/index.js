@@ -3,6 +3,7 @@ const express = require('express');
 var cors = require('cors');
 
 connectToMongo();
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.REACT_APP_PORT || 8000;

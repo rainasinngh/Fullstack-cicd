@@ -12,25 +12,40 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            try {
-                setUser(JSON.parse(storedUser));
-            } catch (error) {
-                console.error('Error parsing stored user:', error);
-                localStorage.removeItem('user');
-            }
+        const token = localStorage.getItem('token');
+    
+        if (token) {
+            axios.get('http://localhost:8000/api/users/me', {
+                headers: {
+                    'auth-token': token
+                }
+            })
+            .then(res => {
+                setUser(res.data); // user is returned from the backend
+            })
+            .catch(err => {
+                console.error('Invalid token:', err);
+                localStorage.removeItem('token');
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+        } else {
+            setLoading(false);
         }
-        setLoading(false);
-    }, []);
+    }, []);    
+
 
     const login = async (email, password) => {
         try {
             const response = await axios.post('http://localhost:8000/api/auth/login', { email, password });
-            const userData = response.data;
-            setUser(userData);
-            localStorage.setItem('user', JSON.stringify(userData));
-            return userData;
+            const { token, user } = response.data;
+
+            setUser(user);
+            // localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('token', token);
+
+            return { token, user };
         } catch (error) {
             console.error('Login error:', error);
             throw new Error('Failed to login');
@@ -40,10 +55,14 @@ export function AuthProvider({ children }) {
     const register = async (email, password, name, role) => {
         try {
             const response = await axios.post('http://localhost:8000/api/auth/register', { email, password, name, role });
-            const userData = response.data;
-            setUser(userData);
-            localStorage.setItem('user', JSON.stringify(userData));
-            return userData;
+            const { token, user } = response.data;
+
+            setUser(user);
+            // console.log(user);
+            // localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('token', token);
+
+            return { token, user };
         } catch (error) {
             console.error('Registration error:', error);
             throw new Error('Failed to register');
@@ -52,8 +71,10 @@ export function AuthProvider({ children }) {
 
     const logout = () => {
         setUser(null);
-        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        window.location.href = '/';
     };
+
 
     const updateProfile = async (data) => {
         try {
@@ -71,7 +92,7 @@ export function AuthProvider({ children }) {
     const updateStats = async (stats) => {
         try {
             const token = localStorage.getItem('token');
-    
+
             const response = await axios.put(
                 `http://localhost:8000/api/users/${user._id}/stats`,
                 stats,
@@ -81,7 +102,7 @@ export function AuthProvider({ children }) {
                     }
                 }
             );
-    
+
             const updatedUser = response.data;
             setUser(updatedUser);
             localStorage.setItem('user', JSON.stringify(updatedUser));
@@ -91,7 +112,7 @@ export function AuthProvider({ children }) {
             throw new Error('Failed to update stats');
         }
     };
-    
+
 
     const value = {
         user,
