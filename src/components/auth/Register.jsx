@@ -144,6 +144,7 @@ const Register = () => {
                         </div>
 
                         {/* Role selection */}
+                        {/*}
                         <div>
                             <label className="block text-gray-700 mb-2">Registering as</label>
                             <div className="flex gap-4">
@@ -170,7 +171,7 @@ const Register = () => {
                                     Therapist
                                 </label>
                             </div>
-                        </div>
+                        </div>*/}
 
                         {/* Terms checkbox */}
                         <div className="flex items-start">

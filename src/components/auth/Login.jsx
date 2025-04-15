@@ -28,6 +28,7 @@ const Login = () => {
             setLoading(true);
             await login(formData.email, formData.password);
             navigate('/');
+            window.location.reload();
         } catch (err) {
             setError('Failed to sign in. Please check your credentials.');
         } finally {
