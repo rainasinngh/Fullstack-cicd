@@ -7,7 +7,7 @@ pipeline {
         BACKEND_IMAGE =  'rainaaaaa/raahat-backend'
 
         
-        DOCKER_CREDENTIALS = 'dockerhub-credentials' 
+        DOCKER_CREDENTIALS = 'DOCKER_CREDENTIALS' 
 
     
         DOCKER_COMPOSE_FILE = 'docker-compose.yml'
