@@ -20,27 +20,13 @@ pipeline {
                 script {
                     echo 'Building Docker images for frontend and backend...'
                 
-                    sh 'docker-compose -f ${DOCKER_COMPOSE_FILE} build'
+                    sh 'docker-compose up -d '
                 }
             }
         }
 
         
-        stage('Push Docker Images') {
-            steps {
-                script {
-                    echo 'Logging in to DockerHub and pushing Docker images...'
-                    
-                    withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
-                    }
-                    
-                    sh "docker push ${FRONTEND_IMAGE}"
-                    sh "docker push ${BACKEND_IMAGE}"
-                }
-            }
-        }
-
+       
         
         stage('Deploy Application') {
             steps {
