@@ -18,6 +18,17 @@ pipeline {
         stage('🔧 Build Docker Images') {
             steps {
                 script {
+                    echo 'Building Docker images for frontend and backend...'
+                
+                    sh 'docker-compose up -d '
+                }
+            }
+        }
+
+        
+       
+        
+        stage('Deploy Application') {
                     echo "\033[1;34m=== Building Docker images for frontend and backend... ===\033[0m"
                     sh '''
                         docker-compose -f ${DOCKER_COMPOSE_FILE} build > build.log 2>&1 || {
